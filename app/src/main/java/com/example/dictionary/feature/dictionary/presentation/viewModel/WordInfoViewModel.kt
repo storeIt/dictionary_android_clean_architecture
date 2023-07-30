@@ -17,10 +17,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed class UIEvent {
-    data class ShowSnackbar(val message: String) : UIEvent()
-}
-
 @HiltViewModel
 class WordInfoViewModel @Inject constructor(private val useCase: GetWordInfoUseCase) : ViewModel() {
     private val _searchQuery = mutableStateOf("")
@@ -69,5 +65,9 @@ class WordInfoViewModel @Inject constructor(private val useCase: GetWordInfoUseC
                 }
             }.launchIn(this)
         }
+    }
+	
+    sealed class UIEvent {
+        data class ShowSnackbar(val message: String) : UIEvent()
     }
 }
